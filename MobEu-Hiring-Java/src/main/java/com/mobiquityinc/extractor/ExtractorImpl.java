@@ -26,20 +26,21 @@ public class ExtractorImpl implements Extractor {
             Pattern thingPattern = Pattern.compile(THING_REGEX);
             lines.forEach(line -> {
                 Matcher lineMatcher = linePattern.matcher(line);
+                // if the following line is true, then we extract the two first part of the line that represent the weight and the things that could be packed
                 if (lineMatcher.matches() && lineMatcher.groupCount() == 2) {
                     Box bag = new Box();
                     bag.setWeight(Double.parseDouble(lineMatcher.group(1)));
-                    if (bag.getWeight() <= Constant.MAX_PACKAGE_WEIGHT) {
+                    if (bag.getWeight() <= Constant.MAX_PACKAGE_WEIGHT) { // we check a constraint defined on constant class
                         List<Thing> things = new ArrayList<>();
-                        List<String> thingLines = Arrays.asList(lineMatcher.group(2).split(SEPARATOR_REGEX));
+                        List<String> thingLines = Arrays.asList(lineMatcher.group(2).split(SEPARATOR_REGEX)); // we split the things to transform them into Things Instances
                         thingLines.forEach(thingLine -> {
                             Matcher thingMatcher = thingPattern.matcher(thingLine);
                             if (thingMatcher.matches() && thingMatcher.groupCount() == 3) {
                                 Thing thing = new Thing();
-                                thing.setIndex(Long.parseLong(thingMatcher.group(1)));
-                                thing.setWeight(Double.parseDouble(thingMatcher.group(2)));
-                                thing.setCost(Double.parseDouble(thingMatcher.group(3)));
-                                if (thing.getWeight() <= bag.getWeight() &&
+                                thing.setIndex(Long.parseLong(thingMatcher.group(1))); // we set the Index
+                                thing.setWeight(Double.parseDouble(thingMatcher.group(2))); // weight
+                                thing.setCost(Double.parseDouble(thingMatcher.group(3))); // cost
+                                if (thing.getWeight() <= bag.getWeight() &&  // Here we check some constraint defined on constant class
                                         thing.getWeight() <= Constant.MAX_THING_WEIGHT &&
                                         thing.getCost() <= Constant.MAX_THING_COST &&
                                         thing.getIndex() <= Constant.MAX_THINGS_ALLOWED_TO_CHOOSE) {
@@ -47,7 +48,7 @@ public class ExtractorImpl implements Extractor {
                                 }
                             }
                         });
-                        things.sort(Comparator.comparing(Thing::getIndex));
+                        things.sort(Comparator.comparing(Thing::getIndex)); // sort by index
                         bag.setThings(things);
                         bags.add(bag);
                     }

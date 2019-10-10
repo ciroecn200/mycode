@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Class that handler the extraction from a collection of lines
+ * I use an interface because in this way is easy to change in the future to a better implementation
+ * without affecting the rest of the code
  */
 public interface Extractor {
 

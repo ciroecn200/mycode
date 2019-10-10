@@ -6,6 +6,8 @@ import java.util.List;
 
 /**
  * Class that handler the operations related to a File
+ * I use an interface because in this way is easy to change in the future to a better implementation
+ * without affecting the rest of the code
  */
 public interface File {
 
