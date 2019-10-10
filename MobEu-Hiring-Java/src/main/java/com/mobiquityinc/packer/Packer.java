@@ -41,11 +41,10 @@ public class Packer {
      */
     public static String pack(final String filePath) throws APIException {
         LOGGER.log(Level.INFO, "Packing things");
-        String output = null;
         File file = new FileImpl();
         List<String> lines = file.get(filePath);
         Extractor extractor = new ExtractorImpl();
-        List<Bag> bags = extractor.extract(lines);
+        List<Box> bags = extractor.extract(lines);
         Selector selector = new SelectorImpl();
         List<String> selectedItems = selector.select(bags);
         String finalPack = String.join(DELIMITER_FINAL_PACK, selectedItems);

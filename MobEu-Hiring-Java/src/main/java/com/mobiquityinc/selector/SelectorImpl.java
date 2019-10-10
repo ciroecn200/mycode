@@ -1,16 +1,19 @@
 package com.mobiquityinc.selector;
 
-import com.mobiquityinc.packer.Bag;
+import com.mobiquityinc.packer.Box;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class that handler the implementation of Selector
+ */
 public class SelectorImpl implements Selector {
 
     public static final String EMPTY_SELECTED_ITEMS = "-";
 
     @Override
-    public List<String> select(final List<Bag> bags) {
+    public List<String> select(final List<Box> bags) {
         List<String> itemsSelectedForBags = new ArrayList<>();
         bags.forEach(bag -> {
             int items = bag.getThings().size() + 1;

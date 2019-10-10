@@ -5,7 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Class that represent a thing to be packed
+ * Class that represent a thing to be packed inside a Box
+ * Has and index a cost and a weight
  */
 @Data
 @NoArgsConstructor
