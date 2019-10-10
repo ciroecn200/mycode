@@ -1,5 +1,8 @@
 package com.mobiquityinc.constant;
 
+/**
+ * Constants of the packer functionality
+ */
 public final class Constant {
 
     public static final Integer MAX_PACKAGE_WEIGHT_CAN_TAKE = 100;
@@ -10,6 +13,9 @@ public final class Constant {
 
     public static final Integer MAX_THING_COST = 100;
 
+    /**
+     * To avoid create an instance of the class
+     */
     private Constant() {
 
     }
