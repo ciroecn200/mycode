@@ -8,8 +8,8 @@ import org.junit.rules.ExpectedException;
 
 import java.util.Objects;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
 
 /**
  * Testing class for Packer
@@ -100,7 +100,7 @@ public class PackerTest {
     @Test
     public void testingWithAGoodFile() throws APIException {
         String output = Packer.pack(INPUT);
-       // assertThat(output, is(EXPECTED_OUTPUT));
+        assertThat(output, is(EXPECTED_OUTPUT));
     }
 
     /**

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class SelectorImpl implements Selector {
 
-    public static final String EMPTY_SELECTED_ITEMS = "-";
+    private static final String EMPTY_SELECTED_ITEMS = "-";
 
     @Override
     public List<String> select(final List<Box> bags) {
@@ -43,7 +43,13 @@ public class SelectorImpl implements Selector {
             while (i > 0 && w > 0) {
                 if (cost[i][w] != cost[i - 1][w]) {
                     w = w - bag.getThings().get(i - 1).getWeight().intValue();
-                    selectedItemsForCurrentBag.add(bag.getThings().get(i - 1).getIndex().toString());
+                    if(i < bag.getThings().size() &&
+                            bag.getThings().get(i - 1).getCost().compareTo(bag.getThings().get(i).getCost()) == 0 &&
+                            bag.getThings().get(i - 1).getWeight().compareTo(bag.getThings().get(i).getWeight()) > 0 ){
+                        selectedItemsForCurrentBag.add(bag.getThings().get(i).getIndex().toString());
+                    }else{
+                        selectedItemsForCurrentBag.add(bag.getThings().get(i - 1).getIndex().toString());
+                    }
                 }
                 i--;
             }
