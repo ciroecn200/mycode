@@ -21,9 +21,9 @@ public class ConstantTest {
     @Test
     public void testingConstantValues() {
 
-        assertThat(Constant.MAX_PACKAGE_WEIGHT_CAN_TAKE, is(100));
+        assertThat(Constant.MAX_PACKAGE_WEIGHT, is(100));
         assertThat(Constant.MAX_THING_COST, is(100));
         assertThat(Constant.MAX_THING_WEIGHT, is(100));
-        assertThat(Constant.MAX_THINGS_TO_CHOOSE, is(15));
+        assertThat(Constant.MAX_THINGS_ALLOWED_TO_CHOOSE, is(15));
     }
 }

@@ -6,8 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Objects;
-
+import static com.mobiquityinc.Utility.*;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -16,14 +15,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class PackerTest {
 
-    private static final String ABSOLUTE_PATH = getAbsolutePathForAFile();
-    private static final String PATH_FORMAT = "%s%s";
-    private static final String INPUT = String.format(PATH_FORMAT, ABSOLUTE_PATH, "input");
-    private static final String EMPTY_INPUT = String.format(PATH_FORMAT, ABSOLUTE_PATH, "emptyInput");
-    private static final String FILE_PATH_CANNOT_BE_NULL_OR_EMPTY = "FilePath cannot be null or empty";
-    private static final String THE_FILE_MUST_CONTAIN_AT_LEAST_ONE_ELEMENT = "The file must contain at least one element";
-    private static final String DUMMY_PATH_NO_SUCH_FILE_OR_DIRECTORY = "/dummy/path (No such file or directory)";
-    private static final String DUMMY_PATH = "/dummy/path";
     private static final String EXPECTED_OUTPUT = "4 - 2,7 8,9";
 
     @Rule
@@ -103,13 +94,5 @@ public class PackerTest {
         assertThat(output, is(EXPECTED_OUTPUT));
     }
 
-    /**
-     * Get Absolute Path of /resources folder for the test
-     *
-     * @return absolute Path
-     */
-    private static String getAbsolutePathForAFile() {
-        ClassLoader classLoader = PackerTest.class.getClassLoader();
-        return Objects.requireNonNull(classLoader.getResource(StringUtils.EMPTY)).getPath();
-    }
+
 }
